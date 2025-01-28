@@ -1,17 +1,27 @@
 #include <stdio.h>
-#include <time.h>
+#include <windows.h>
+
+void funct(int);
 
 int main(){
- clock_t T;
- long s,e;
- s=T;
-funct(10);
- e=T;
- printf("%d nano seconds",s-e);
+   LARGE_INTEGER start, end, frequency;
+
+    QueryPerformanceFrequency(&frequency);
+    
+    QueryPerformanceCounter(&start);
+    
+    funct(1000);
+    
+    QueryPerformanceCounter(&end);
+    
+    double T = (double)(end.QuadPart - start.QuadPart) * 1e9 / frequency.QuadPart;
+    
+ printf("%f nanoseconds",T);
 }
 
 void funct(int n){
-    int sum = 0;
+  int sum=0;
     for(int i =0;i<n;i++)
         sum++;
+    
 }
