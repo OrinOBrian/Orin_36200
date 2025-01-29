@@ -5,12 +5,16 @@ void funct(int);
 
 int main(){
    LARGE_INTEGER start, end, frequency;
+   int num;
+
+    printf("Enter # of iterations: ");
+    scanf("%d", &num);
 
     QueryPerformanceFrequency(&frequency);
     
     QueryPerformanceCounter(&start);
     
-    funct(1000);
+    funct(num);
     
     QueryPerformanceCounter(&end);
     
