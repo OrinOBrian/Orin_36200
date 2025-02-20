@@ -28,7 +28,7 @@ int main() {
     char c ='0';
     while(c!='q'){
         printf("\n_________________________\n");
-        printf("| Register Student: m\n| Print Students Classes:s\n| Print Classes Roster:c\n| Print Matrix:p\n| Read from File:r\n| Save to file:f\n| Quit:q");
+        printf("| Register Student: m\n| Print Students Classes:s\n| Print Classes Roster:c\n| Print Matrix:p\n| Read from File:r\n| Quit:q");
         printf("\n|________________________\n");
         printf("Enter a Command... ");
         int catch = scanf(" %c",&c);
@@ -55,15 +55,6 @@ int main() {
                 // print matrix
                 printM(root);
                 break;
-            case 'f':{
-                // print to file
-                FILE *fp = fopen("matrix.txt", "w");
-                if (fp != NULL) {
-                    fprintM(root, fp);
-                    fclose(fp);
-                }
-                break;
-            }
             case 's':{
                 int st;
                 //print a students class list
@@ -85,6 +76,9 @@ int main() {
                 break;
             }
             case 'r':{
+                char s[100];
+                printf("Enter an Input File... ");
+                catch = scanf("%s",&s);
                 fgetsM(root, "input.txt");
                 break;
             }
@@ -255,26 +249,6 @@ void clprintM(LMat* head, int s) {
     }
     printf("\n");
     return;
-}
-
-// Print matrix to file
-void fprintM(LMat* head, FILE *fp) {
-    LMat* rowStart = head;
-    LMat* current = rowStart;
-    current=current->right;
-    rowStart = rowStart->down;
-    while(rowStart != NULL) {
-        fprintf(fp,"%d ", current->s);
-        current=current->down;
-        while (rowStart != NULL) {
-            if(current->s > 0)
-                fprintf(fp,"%d ",rowStart->s);
-            current=current->down;
-            rowStart = rowStart->down;
-        }
-        fprintf(fp, "\n");
-        rowStart = rowStart->down;
-    }
 }
 
 //Reads st,cl,cl,cl from a file 
