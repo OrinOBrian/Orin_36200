@@ -13,7 +13,7 @@ void packM(LMat* head, int std, int cls);
 void printM(LMat* head);
 void stprintM(LMat* head, int s);
 void clprintM(LMat* head, int s);
-void fprintM(LMat* head, FILE *fp);
+void fprintM(LMat* head, char* s);
 void fgetsM(LMat *root, const char *filename);
 void freeM(LMat* head);
 
@@ -80,6 +80,14 @@ int main() {
                 printf("Enter an Input File... ");
                 catch = scanf("%s",&s);
                 fgetsM(root, "input.txt");
+                break;
+            }
+            case 'f':{
+                char s[100];
+                printf("Enter an Output File... ");
+                catch = scanf("%s",&s);
+                if(catch==1)
+                    fprintM(root,s);
                 break;
             }
             default:
@@ -202,6 +210,26 @@ void printM(LMat* head) {
         rowStart = rowStart->down;
     }
 }
+
+void fprintM(LMat* head,char* t) {
+    FILE *fp = fopen(t, "w");
+    if (fp == NULL) {
+        printf("Error opening file\n");
+        return;
+    }
+    LMat* rowStart = head;
+    while(rowStart != NULL) {
+        LMat* current = rowStart;
+        while(current != NULL) {
+            fprintf( fp,"%d\t", current->s);
+            current = current->right;
+        }
+        fprintf(fp,"\n");
+        rowStart = rowStart->down;
+    }
+    fclose(fp);
+}
+
 
 // search for stn s and if taken print the class numbers 
 void stprintM(LMat* head, int s) {
