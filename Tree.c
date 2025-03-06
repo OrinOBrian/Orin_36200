@@ -34,7 +34,7 @@ void main(int ac,char* av[]){
     }
     while(c!='q'){
         printf("\no________--OWO--________o\n|\t OPTIONS \t|\n");
-        printf("|\tInsert:\t'i'\t|\n|\tPrint:\t'p'\t|\n|\tQuit:\t'q'\t|");
+        printf("|\tInsert:\t'i'\t|\n|\tPrint:\t'p'\t|\n|\tTo File:'f'\t|\n|\tQuit:\t'q'\t|");
         printf("\nb-----------------------d\n");
         printf("Enter a Command... ");
 
